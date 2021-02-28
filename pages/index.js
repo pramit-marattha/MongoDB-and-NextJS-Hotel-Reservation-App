@@ -12,7 +12,7 @@ export default function Home({ properties }) {
   return (
     <>
       <Head>
-        <title>MongoDb and Next js</title>
+        <title>Hotel Reservation app</title>
         <link rel="icon" href="/favicon.ico" />
         <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
       </Head>
