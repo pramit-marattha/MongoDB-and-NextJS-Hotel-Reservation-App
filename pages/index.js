@@ -3,8 +3,10 @@ import { connectToDatabase } from '../util/mongodb'
 
 export default function Home({ properties }) {
 
-  const handleClickBook = (property)=>{
-
+  const handleClickBook = async (property)=>{
+    const data = await fetch(`http://localhost:3000/api/reservation?property_id=${property._id}&guest=pramit`)
+    const res = await data.json();
+    console.log(res);
   }
 
   return (
