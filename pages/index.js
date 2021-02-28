@@ -4,7 +4,9 @@ import { connectToDatabase } from '../util/mongodb'
 export default function Home({ properties }) {
 
   const handleClickBook = async (property)=>{
-    const data = await fetch(`http://localhost:3000/api/reservation?property_id=${property._id}&guest=pramit`)
+    let guestName = window.prompt("Enter your name: ")
+    const data = await fetch(`http://localhost:3000/api/reservation?property_id=${property._id}&guest=${guestName}`)
+    alert(`Thank you for your reservation ${guestName}`)
     const res = await data.json();
     console.log(res);
   }
@@ -20,7 +22,7 @@ export default function Home({ properties }) {
       <div className="container mx-auto">
         <div className="flex">
           <div className="row w-full text-center my-4">
-            <h1 className="text-4xl font-bold mb-5">Hotel Reservation web app</h1>
+            <h1 className="text-4xl font-bold mb-5">Hotel Reservation Web App</h1>
           </div>
         </div>
       </div>
@@ -55,7 +57,7 @@ export default function Home({ properties }) {
 export async function getServerSideProps(context) {
   const { db } = await connectToDatabase();
 
-  const data = await db.collection("listingsAndReviews").find({}).limit(50).toArray();
+  const data = await db.collection("listingsAndReviews").find({}).limit(15).toArray();
 
   const properties = JSON.parse(JSON.stringify(data));
 

@@ -1,4 +1,12 @@
-## Example app using MongoDB
+![hotelbook](https://user-images.githubusercontent.com/37651620/109425765-14173f80-7a12-11eb-92e1-25f66197f18d.png)
+![image](https://user-images.githubusercontent.com/37651620/109425785-30b37780-7a12-11eb-9734-06bfc4d44ba8.png)
+![image](https://user-images.githubusercontent.com/37651620/109425797-4032c080-7a12-11eb-9b2f-1c7238b689eb.png)
+
+## MongoDB collection
+
+![image](https://user-images.githubusercontent.com/37651620/109425828-707a5f00-7a12-11eb-8a69-1851ee5a934c.png)
+
+## Hotel Reservation app using MongoDB and nextjs
 
 [MongoDB](https://www.mongodb.com/) is a general purpose, document-based, distributed database built for modern application developers and for the cloud era. This example will show you how to connect to and use MongoDB as your backend for your Next.js app.
 
