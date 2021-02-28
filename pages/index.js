@@ -3,10 +3,50 @@ import { connectToDatabase } from '../util/mongodb'
 
 export default function Home({ properties }) {
 
+  const handleClickBook = (property)=>{
+
+  }
+
   return (
-    <div>
-      
-    </div>
+    <>
+      <Head>
+        <title>MongoDb and Next js</title>
+        <link rel="icon" href="/favicon.ico" />
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+      </Head>
+
+      <div className="container mx-auto">
+        <div className="flex">
+          <div className="row w-full text-center my-4">
+            <h1 className="text-4xl font-bold mb-5">Hotel Reservation web app</h1>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex flex-row flex-wrap">
+        {properties && properties.map(property=>(
+          <div className="flex-auto w-1/4 rounded overflow-hidden shadow-lg m-2">
+            <img className="w-full" src={property.image}/>
+            <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2">{property.name}
+            <div className="text-red-400 text-base">(Perfect fit for {property.guests} people)</div>
+            </div>
+            <p className="font-bold text-blue-700">{property.address.street}</p>
+            <p className="text-yellow-800 text-base">{property.summary}</p>
+            </div>
+
+            <div className="text-center py-2 my-2 font-bold">
+            <span className="text-pink-600">${property.price}</span> per night
+          </div>
+
+          <div className="text-center py-2 my-2">
+            <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-4 mr-5 rounded" onClick={()=>handleClickBook(property)}>Reserve</button>
+          </div>
+
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
 
@@ -17,8 +57,21 @@ export async function getServerSideProps(context) {
 
   const properties = JSON.parse(JSON.stringify(data));
 
-  // console.log(properties);
+  const filtered = properties.map(property=>{
+  const price = JSON.parse(JSON.stringify(property.price));
+// props
+    return{
+      _id: property._id,
+      name:property.name,
+      image:property.images.picture_url,
+      address:property.address,
+      summary:property.summary,
+      guests: property.accommodates,
+      price: price.$numberDecimal,
+    }
+  })
+
   return {
-    props: { properties: properties },
+    props: { properties: filtered },
   }
 }
